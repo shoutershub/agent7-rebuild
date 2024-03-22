@@ -7,7 +7,7 @@
             <slot name="title">
 
             </slot>
-            <template #suffix>
+            <template v-if="showDropDownArrow" #suffix>
               <svg
                 class="w-4 h-4 ml-2"
                 fill="none"
@@ -35,7 +35,7 @@
         :style="contentStyles"
       >
         <sw-slot-listener @click="onHide">
-          <slot />
+          <slot class="unset" />
         </sw-slot-listener>
       </div>
     </transition>
@@ -66,6 +66,7 @@ const props = withDefaults(
     closeInside: boolean;
     buttonColor?: ButtonVariant;
     buttonclass?: string;
+    showDropDownArrow: boolean
   }>(),
   {
     placement: "bottom",
@@ -74,6 +75,7 @@ const props = withDefaults(
     closeInside: false,
     buttonColor: "default",
     buttonclass: "",
+    showDropDownArrow: true
   }
 );
 

@@ -51,8 +51,4 @@
 
 <script setup lang="ts">
 import { SwButton, SwInput } from "@/global";
-import {ref} from 'vue';
-
-
-const inputData = ref<string>("Hello");
 </script>

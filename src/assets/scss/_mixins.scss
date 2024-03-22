@@ -1,4 +1,10 @@
 // Breakpoints
+html {
+  height: 100%; 
+  body {
+    height: inherit;
+  }
+}
 
 // mobile breakpoint
 @mixin mobile {

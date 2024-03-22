@@ -45,7 +45,7 @@ export default defineComponent({
     },
   },
   emits: ['click', 'focus', 'blur', 'mouseenter', 'mouseleave'],
-  setup (props, { emit }) {
+  setup ({}, { emit }) {
     const handleFocus = (e: FocusEvent) => {
       emit('focus', e)
     }

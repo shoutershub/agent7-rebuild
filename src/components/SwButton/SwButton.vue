@@ -38,7 +38,7 @@
           />
         </span>
   
-        <slot v-if="!loading" />
+        <slot v-if="!loading || combineWithPrefix" />
   
         <span
           v-if="isOutlineGradient && ($slots.suffix || loadingSuffix)"
@@ -96,7 +96,8 @@
     loadingPosition?: 'suffix' | 'prefix'
     disabled?: boolean
     href?: string
-    tag?: string
+    tag?: string,
+    combineWithPrefix?: boolean
   }
   const props = withDefaults(defineProps<IButtonProps>(), {
     class: '',
@@ -112,6 +113,7 @@
     disabled: false,
     href: '',
     tag: 'a',
+    combineWithPrefix: false
   })
   
   const buttonClasses = computed(() => useButtonClasses(toRefs(props)))

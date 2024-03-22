@@ -38,6 +38,64 @@
             }
         }
     },
+    "dashboard": {
+        "header": {
+            "title": "Dashboard"
+        }
+    },
+    "teamMembers": {
+        "header": {
+            "teamMembers": "Team Members",
+            "tableTopBar" : {
+                "searchName": "Search team members",
+                "addUser": "Add user",
+                "filter": {
+                    "title": "Filter",
+                    "fields": {
+                        "title" : "Hide Fields",
+                        "clear": "Clear",
+                        "fieldsOptions" : {
+                            "name": "Name",
+                            "permission": "Permission",
+                            "lastLogin": "Last login",
+                            "memberSince": "Member since"
+                        }
+                    }
+                }
+            }
+        },
+        "addOrEditModal": {
+            "title": "Invite all your colleagues",
+            "description": " For security reasons, the link will expire in 5 days (03/17/2024) and a new one would be automatically generated.",
+            "field" : {
+                "name": "Name",
+                "email": "Email"
+            },
+            "action": {
+                "edit": "Edit",
+                "delete": "Delete" 
+            },
+            "button": {
+                "send": "Send email invitation"
+            },
+            "invitationCopyLinkText": "Invite by link",
+            "invitationCopyLinkAction": "copy invitation link",
+            "permission": "Change permission",
+            "edit": {
+                "title": "Edit team member",
+                "action": {
+                    "saveChanges": "Save Changes"
+                }
+            }
+        },
+        "deleteSelectedItemModal": {
+            "title" : "Are you sure you want to continue with this action ?",
+            "action": {
+                "continue": "Yes, continue",
+                "cancel": "No, cancel"
+            }
+        }
+    },
     "misc": {
         "notFound": {
             "header": {

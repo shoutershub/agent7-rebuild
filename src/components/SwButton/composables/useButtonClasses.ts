@@ -17,6 +17,7 @@ const buttonColorClasses: ButtonClassMap<ButtonVariant> = {
     yellow: 'focus:outline-none text-white bg-yellow-400 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg dark:focus:ring-yellow-900',
     purple: 'focus:outline-none text-white bg-purple-700 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg dark:bg-purple-600 dark:focus:ring-purple-900',
     pink: 'focus:outline-none text-white bg-pink-700 focus:ring-4 focus:ring-pink-300 font-medium rounded-lg dark:bg-pink-600 dark:focus:ring-pink-900',
+    transparent: ''
   },
   hover: {
     default: 'dark:hover:bg-primary-700',
@@ -29,11 +30,13 @@ const buttonColorClasses: ButtonClassMap<ButtonVariant> = {
     yellow: 'hover:bg-yellow-500',
     purple: 'hover:bg-purple-800 dark:hover:bg-purple-700',
     pink: 'hover:bg-pink-800 dark:hover:bg-pink-700',
+    transparent: ''
   },
 }
 
 const buttonOutlineColorClasses: ButtonClassMap<Exclude<ButtonVariant, 'light' | 'alternative'>> = {
   default: {
+    transparent: '',
     dark: 'text-gray-900 border border-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm text-center dark:border-gray-600 dark:text-gray-400 dark:focus:ring-gray-800',
     default:
       'text-blue-700 border border-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm text-center dark:border-blue-500 dark:text-blue-500 dark:focus:ring-blue-800',
@@ -48,6 +51,7 @@ const buttonOutlineColorClasses: ButtonClassMap<Exclude<ButtonVariant, 'light' |
       'text-yellow-400 border border-yellow-400 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm text-center dark:border-yellow-300 dark:text-yellow-300 dark:focus:ring-yellow-900',
   },
   hover: {
+    transparent: '',
     dark: 'hover:text-white hover:bg-gray-900 dark:hover:text-white dark:hover:bg-gray-600',
     default: 'hover:text-white hover:bg-blue-800 dark:hover:text-white dark:hover:bg-blue-600',
     blue: 'hover:text-white hover:bg-blue-800 dark:hover:text-white dark:hover:bg-blue-600',

@@ -7,6 +7,7 @@
 // Plugins
 import type { App } from 'vue'
 import router from '@/router';
+// @ts-ignore
 import FlagIcon from 'vue-flag-icon';
 import pinia from '@/store'
 import i18n from "@/plugins/languagePlugin/languagePlugin";

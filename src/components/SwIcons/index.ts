@@ -1,0 +1,6 @@
+export { default as CopyIcon } from './CopyIcon.vue'
+export { default as InfoIcon } from './InfoIcon.vue'
+export { default as DeleteIcon } from './DeleteIcon.vue'
+export { default as ArrowdownIcon } from './ArrowdownIcon.vue'
+export { default as FilterIcon } from './FilterIcon.vue'
+export { default as SearchIcon } from './SearchIcon.vue'

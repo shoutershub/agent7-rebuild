@@ -1,5 +1,5 @@
 export interface LanguageTypes {
-    language: String;
+    language: any
     flag: String;
     title: String;
     default?: Boolean
