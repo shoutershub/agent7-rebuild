@@ -1,5 +1,5 @@
 <template>
-  <main class="dark:bg-gray-900 lg:ml-[105px] h-full space-y-4">
+  <main class="dark:bg-gray-900 lg:ml-[105px] h-full">
     <!-- Breadcrumb -->
 
     <div
@@ -30,6 +30,9 @@
               </li>
             </ol>
           </nav>
+        </div>
+        <div class="mb-4 text-lg font-semibold">
+          <h1>{{ $t("teamMembers.header.teamMembers") }}</h1>
         </div>
         <div class="sm:flex">
           <div
@@ -74,7 +77,6 @@
             <button
               @click="addNewTeamMemberTrigger"
               type="button"
-              data-modal-toggle="add-user-modal"
               class="h-[42px] inline-flex justify-center items-center py-2 px-3 w-1/2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
             >
               <img :src="getSvgIcon('plus')" width="24" height="24" />
@@ -297,7 +299,7 @@
                   class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
                 >
                   <ul
-                    class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                    class="text-sm text-gray-700 dark:text-gray-200"
                     :aria-labelledby="`dropdown${index}`"
                   >
                     <li>
@@ -310,7 +312,7 @@
                       </a>
                     </li>
                   </ul>
-                  <div class="py-1">
+                  <div>
                     <a
                       href="#"
                       @click="deleteSingleTeamMemberTrigger(item)"
@@ -564,7 +566,7 @@
           {{ $t("teamMembers.addOrEditModal.description") }}
         </p>
 
-        <div class="mt-10 mb-11">
+        <div class="mt-10">
           <div class="grid gap-1 grid-cols-12 items-center mt-5">
             <div class="col-span-12">
               <sw-input
@@ -624,6 +626,7 @@
         </div>
       </template>
       <template #body>
+
         <div class="mt-10 mb-11">
           <div class="grid gap-1 grid-cols-12 items-center mt-5">
             <div class="col-span-12">
@@ -647,6 +650,7 @@
 
             <div class="col-span-12 mt-5">
               <sw-select
+                class="w-full"
                 v-model="activeUserData.permission"
                 :placeholder="$t('teamMembers.addOrEditModal.permission')"
                 :options="memberPermissionList"

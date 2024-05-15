@@ -118,7 +118,7 @@
   
   const buttonClasses = computed(() => useButtonClasses(toRefs(props)))
   const wrapperClasses = computed(() => useMergeClasses(buttonClasses.value.wrapperClasses))
-  const spanClasses = computed(() => useMergeClasses(buttonClasses.value.spanClasses))
+  const spanClasses = computed(() => useMergeClasses([buttonClasses.value.spanClasses, 'min-w-[0]']))
   
   const isOutlineGradient = computed(() => props.outline && props.gradient)
   

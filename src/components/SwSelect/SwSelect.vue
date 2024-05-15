@@ -4,7 +4,7 @@
       <span v-if="label" :class="labelClasses">
         {{ label }}
       </span>
-      <select v-model="model" :disabled="disabled" :class="selectClasses">
+      <select v-model="model" :disabled="disabled" :class="selectClasses" v-bind="$attrs">
         <option disabled selected value="">
           {{ placeholder }}
         </option>

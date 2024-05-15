@@ -10,7 +10,7 @@ import {
 const baseLabelClasses = 'block mb-2 text-sm font-medium'
 
 // INPUT
-const defaultSelectClasses = 'w-full text-gray-900 bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'
+const defaultSelectClasses = 'text-gray-900 bg-gray-50 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500'
 const disabledSelectClasses = 'cursor-not-allowed bg-gray-100'
 const underlineSelectClasses = 'bg-transparent dark:bg-transparent border-b-2 border-gray-200 appearance-none dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer'
 const selectSizeClasses: Record<InputSize, string> = {

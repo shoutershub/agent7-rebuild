@@ -11,9 +11,10 @@ import router from '@/router';
 import FlagIcon from 'vue-flag-icon';
 import pinia from '@/store'
 import i18n from "@/plugins/languagePlugin/languagePlugin";
-
+import { PerfectScrollbarPlugin } from 'vue3-perfect-scrollbar';
 
 import '@/assets/scss/gloabl.scss';
+import 'vue3-perfect-scrollbar/style.css'
 
 
 
@@ -25,4 +26,5 @@ export function registerPlugins (app: App) {
     .use(FlagIcon)
     .use(pinia)
     .use(i18n)
+    .use(PerfectScrollbarPlugin)
 }

@@ -4,6 +4,8 @@ import { createRouter, createWebHistory} from 'vue-router'
 //Layout
 import AuthDefaultayout from "@/layouts/default/auth/AuthLayout.vue";
 import DashboardLayout from "@/layouts/default/dashboard/DashboardLayout.vue"
+import SettingsLayout from "@/layouts/default/settings/SettingsLayout.vue"
+import ApplicationSettingsPage from '@/views/dashboard/settings/application-settings/ApplicationSettingsPage.vue';
 
 
 // Auth
@@ -16,9 +18,10 @@ import ResetPasswordResetToken from "@/views/auth/reset-password/ResetPasswordRe
 import NotFound from '@/views/msic/NotFound.vue';
 
 //Settings
-import SettingsPage from "@/views/dashboard/settings/IndexPage.vue";
 import AccountPage from "@/views/dashboard/settings/account/AccountPage.vue";
-
+import WidgetSettingsPage from "@/views/dashboard/settings/widget/WidgetSettingsPage.vue";
+import ProfilePage from "@/views/dashboard/settings/profile/ProfilePage.vue";
+import GeneralSettingsPage from '@/views/dashboard/settings/general/GeneralSettingsPage.vue';
 
 // Dashboard
 import DashboardPage from "@/views/dashboard/dashboard/DashboardPage.vue"
@@ -56,9 +59,14 @@ const routes = [
       {
         path: 'settings',
         meta: { anonymousOnly: true },
+        component: SettingsLayout,
         children: [
-          { path: '', name: 'dashboard.settings.index', component: SettingsPage },
+          { path: '', name: 'dashboard.settings.index', component: GeneralSettingsPage },
           { path: 'account', name: 'dashboard.settings.account', component: AccountPage },
+          { path: 'helpdesk', name: 'dashboard.settings.helpdesk', component: AccountPage },
+          { path: 'widget', name: 'dashboard.settings.widget', component: WidgetSettingsPage },
+          { path: 'profile', name: 'dashboard.settings.profile', component: ProfilePage },
+          { path: 'application-settings', name: 'dashboard.settings.application.settings', component: ApplicationSettingsPage },
         ],
       },
     ],

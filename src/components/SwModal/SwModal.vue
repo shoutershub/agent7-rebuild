@@ -9,11 +9,10 @@
       @keyup.esc="closeWithEsc"
     >
       <div
-        :class="`${modalSizeClasses[size]}`"
-        class="relative p-4 w-full h-full md:h-auto"
+        :class="modalWrapperClass"
       >
         <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div :class="modalWrapperClassInner">
           <!-- Alternative close modal when showHeader = true -->
           <button @click="closeModal" v-if="!showHeader" type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
                 <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -25,7 +24,7 @@
           <!-- Modal header -->
           <div
             v-if="showHeader"
-            :class="$slots.header ? 'border-gray-200 dark:border-gray-600 ml-3' : ''"
+            :class="$slots.header ? 'border-gray-200 dark:border-gray-600 ml-3 text-lg' : ''"
             class="p-4 rounded-t flex justify-between items-center"
           >
             <slot name="header" />
@@ -53,7 +52,7 @@
           <!-- Modal body -->
           <div
             :class="$slots.header ? '' : 'pt-0'"
-            class="pl-6 pt-3 pr-6" 
+            class="pl-6 pt-3 pr-6 pb-6" 
           >
             <slot name="body" />
           </div>
@@ -71,7 +70,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref, type Ref} from 'vue'
+import { computed, onMounted, ref, type Ref} from 'vue'
 import type { ModalSize } from './types'
 
 interface ModalProps {
@@ -90,17 +89,18 @@ const props = withDefaults(defineProps<ModalProps>(), {
 
 const emit = defineEmits(['close', 'click:outside'])
 const modalSizeClasses = {
-  xs: 'max-w-xs',
-  sm: 'max-w-sm',
-  md: 'max-w-md',
-  lg: 'max-w-lg',
-  xl: 'max-w-xl',
-  '2xl': 'max-w-2xl',
-  '3xl': 'max-w-3xl',
-  '4xl': 'max-w-4xl',
-  '5xl': 'max-w-5xl',
-  '6xl': 'max-w-6xl',
-  '7xl': 'max-w-7xl',
+  xs: 'min-w-[20rem]',
+  sm: 'min-w-[24rem]',
+  md: 'min-w-[28rem]',
+  lg: 'min-w-[32rem]',
+  xl: 'min-w-[36rem]',
+  '2xl': 'min-w-[42rem]',
+  '3xl': 'min-w-[48rem]',
+  '4xl': 'min-w-[56rem]',
+  '5xl': 'min-w-[64rem]',
+  '6xl': 'min-w-[72rem]',
+  '7xl': 'min-w-[80rem]',
+  'full': 'h-screen w-full',
 }
 
 function closeModal () {
@@ -122,4 +122,26 @@ onMounted(() => {
     modalRef.value.focus()
   }
 })
+ 
+const modalSizeClass = modalSizeClasses[props.size];
+const modalWrapperClass = computed(() => {
+  console.log(modalSizeClass)
+  if (props.size === 'full'){
+    return `${modalSizeClass} relative w-full h-full`;
+  } else {
+    return `${modalSizeClass} relative p-4 md:h-auto`;
+  }
+})
+
+const defaultModalWrapperClassInner = "relative bg-white shadow dark:bg-gray-700";
+const modalWrapperClassInner = computed(() => {
+  if (props.size === 'full'){
+    return `${defaultModalWrapperClassInner} h-full`;
+  } else {
+    return `${defaultModalWrapperClassInner} rounded-lg`;
+  }
+})
+
+
+
 </script>

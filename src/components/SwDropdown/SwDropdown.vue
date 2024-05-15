@@ -3,13 +3,16 @@
     <div class="inline-flex items-center">
       <sw-slot-listener @click="onToggle">
         <slot name="trigger">
-          <sw-button :class="buttonclass" :color="buttonColor" ref="reference">
-            <slot name="title">
-
-            </slot>
+          <sw-button
+            :disabled="disabled"
+            :class="buttonclass"
+            :color="buttonColor"
+            ref="reference"
+          >
+            <slot name="title"> </slot>
             <template v-if="showDropDownArrow" #suffix>
               <svg
-                class="w-4 h-4 ml-2"
+                :class="dropDownArrowClass"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -51,11 +54,14 @@ import SwSlotListener from "@/components/utils/SwSlotListener/SwSlotListener.vue
 import { useDropdownClasses } from "./composables/useDropdownClasses";
 import type { ButtonVariant } from "@/components/SwButton/types";
 
-
 const visible = ref(false);
 const onHide = () => {
   if (props.closeInside) visible.value = false;
 };
+function hideDropdown(){
+  visible.value = false;
+}
+
 const onToggle = () => (visible.value = !visible.value);
 
 const props = withDefaults(
@@ -66,7 +72,9 @@ const props = withDefaults(
     closeInside: boolean;
     buttonColor?: ButtonVariant;
     buttonclass?: string;
-    showDropDownArrow: boolean
+    showDropDownArrow?: boolean;
+    disabled?: boolean;
+    dropDownType?: string;
   }>(),
   {
     placement: "bottom",
@@ -75,7 +83,9 @@ const props = withDefaults(
     closeInside: false,
     buttonColor: "default",
     buttonclass: "",
-    showDropDownArrow: true
+    showDropDownArrow: true,
+    disabled: false,
+    dropDownType: "button",
   }
 );
 
@@ -104,6 +114,19 @@ onClickOutside(wrapper, () => {
   if (!visible.value) return;
   visible.value = false;
 });
+
+const dropDownArrowClass = computed( () => {
+  if(!visible.value ){
+    return "w-4 h-4 ml-2 transition ease-in-out delay-150";
+  } else {
+    return "w-4 h-4 ml-2 rotate-180 transition ease-in-out delay-150";
+  }
+})
+
+defineExpose({
+  hideDropdown
+})
+
 </script>
 
 <style scoped>

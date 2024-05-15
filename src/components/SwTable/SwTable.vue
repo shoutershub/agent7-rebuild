@@ -34,6 +34,4 @@
   provide('stripedColumns', props.stripedColumns)
 
   const { tableClasses } = useTableClasses(props.tableCss)
-
-  console.log(tableClasses)
   </script>

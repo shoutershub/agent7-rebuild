@@ -1,23 +1,12 @@
 <template>
-    <tr :class="tableRowClasses">
-      <slot />
-    </tr>
-  </template>
-  
-  <script lang="ts" setup>
-  import { useTableRowClasses } from './composables/useTableRowClasses'
-  
-    
-  const props = defineProps({
-    rowIsActive: {
-      type: Boolean,
-      default: false,
-    },
-    rowIsActiveClass: {
-      type: String,
-      default: false,
-    },
-  })
+  <tr :class="tableRowClasses">
+    <slot />
+  </tr>
+</template>
 
-  const { tableRowClasses } = useTableRowClasses(props.rowIsActive, props.rowIsActiveClass)
-  </script>
+<script lang="ts" setup>
+import { useTableRowClasses } from "./composables/useTableRowClasses";
+
+const { tableRowClasses } = useTableRowClasses()
+
+</script>

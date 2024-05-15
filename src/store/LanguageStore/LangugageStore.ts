@@ -24,18 +24,13 @@ export const languageStore = defineStore({
   actions: {
     setLanguage(){
       i18n.global.locale.value = this.language.language;
-      console.log( i18n.global.locale);
     },
     getLanguage(language: any) {
       this.language = language;
     },
-    changeCurrentLanguage(language: any) {
-      this.language = language;
-      const country = language.language.toLocaleLowerCase()
-      i18n.global.locale.value = country
-
-      if (i18n.global.availableLocales.includes(country)) {
-      }
+    changeCurrentLanguage(item: any) {
+      this.language = item;
+      i18n.global.locale.value = item.language.toLocaleLowerCase()
     },
   },
 });

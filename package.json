@@ -12,14 +12,20 @@
     "@floating-ui/vue": "^1.0.6",
     "@vueuse/core": "^10.9.0",
     "classnames": "^2.5.1",
+    "custom-vue-scrollbar": "^0.0.8",
+    "floating-vue": "^5.2.2",
     "flowbite": "^2.3.0",
     "lodash-es": "^4.17.21",
+    "nanoid": "^5.0.7",
     "pinia": "^2.1.7",
     "tailwind-merge": "^2.2.1",
     "vue": "^3.4.19",
     "vue-flag-icon": "^2.1.0",
     "vue-i18n": "^9.10.1",
-    "vue-router": "^4.3.0"
+    "vue-router": "^4.3.0",
+    "vue3-dropzone": "^2.2.1",
+    "vue3-emoji-picker": "^1.1.8",
+    "vue3-perfect-scrollbar": "^2.0.0"
   },
   "devDependencies": {
     "@types/lodash-es": "^4.17.12",

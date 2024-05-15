@@ -15,12 +15,14 @@
 
 <script lang="ts">
 export default {
-  name: 'DeleteIcon',
+  name: "DeleteIcon",
   props: {
-    color: String,
-    default(){
-      return "currentColor";
-    }
-  }
-}
+    color: {
+      type: String,
+      default() {
+        return "currentColor";
+      },
+    },
+  },
+};
 </script>
