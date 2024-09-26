@@ -22,5 +22,7 @@ export { default as UploadIcon } from './UploadIcon.vue'
 export { default as RefreshIcon } from './RefreshIcon.vue'
 export { default as ClipboardIcon } from './ClipboardIcon.vue'
 export { default as CheckIcon } from './CheckIcon.vue'
+export { default as CardIcon } from './CardIcon.vue'
+export { default as DynamicSnackbarIcon } from './DynamicSnackbarIcon.vue'
 
 

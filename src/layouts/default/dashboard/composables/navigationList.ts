@@ -12,61 +12,25 @@ export const navigationLinks : NavigationTypes[] = [
     {
         name: "Inbox",
         icon: "conversation",
-        routeName: "chat",
+        routeName: "dashboard.chat.index",
         section: "top"
     },
-    {
-        name: "Helpdesk",
-        icon: "helpdesk",
-        routeName: "helpdesk",
-        section: "top"
-    },
-    {
-        name: "Statistics",
-        icon: "stats",
-        routeName: "statistics",
-        section: "top"
-    },     
-    {
-        name: "marketing",
-        icon: "marketing",
-        routeName: "marketing",
-        section: "top"
-    },    
-      {
-        name: "Email Optin",
-        icon: "optin",
-        routeName: "optin",
-        section: "top"
-    },    
     {
         name: "Team",
         icon: "team",
-        routeName: "team",
+        routeName: "dashboard.team",
         section: "top"
-    },    
-    {
-        name: "Addon",
-        icon: "addon",
-        routeName: "addon",
-        section: "bottom"
-    }, 
+    },
     {
         name: "Billing",
         icon: "billing",
-        routeName: "billing",
-        section: "bottom"
-    },
-    {
-        name: "Settings",
-        icon: "settings",
-        routeName: "dashboard.settings",
+        routeName: "dashboard.billing",
         section: "bottom"
     },    
     {
-        name: "Go offline",
-        icon: "toggle",
-        routeName: "#",
+        name: "Settings",
+        icon: "settings",
+        routeName: "dashboard.settings.application",
         section: "bottom"
-    }  
+    }
 ] 

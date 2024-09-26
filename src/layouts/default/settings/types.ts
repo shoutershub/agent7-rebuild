@@ -11,14 +11,9 @@ export type settingsNavListType = {
       routeName: "dashboard.settings.widget",
     },
     {
-      name: "Helpdesk Settings",
-      section: "top",
-      routeName: "dashboard.settings.index",
-    },
-    {
       name: "Application Setitng",
       section: "bottom",
-      routeName: "dashboard.settings.application.settings",
+      routeName: "dashboard.settings.application",
     }, 
     {
       name: "My Profile",

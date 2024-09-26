@@ -37,4 +37,7 @@ export { default as SwAccordion } from './components/SwAccordion/SwAccordion.vue
 export { default as SwAccordionContent } from './components/SwAccordion/SwAccordionContent.vue'
 export { default as SwAccordionHeader } from './components/SwAccordion/SwAccordionHeader.vue'
 export { default as SwAccordionPanel } from './components/SwAccordion/SwAccordionPanel.vue'
+
+export { default as SwToast } from './components/SwToast/SwToast.vue'
+
 export *  from '@/components/SwIcons'

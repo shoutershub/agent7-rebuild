@@ -7,7 +7,7 @@
     >
       <div
         v-if="!isOutlineGradient && ($slots.prefix || loadingPrefix)"
-        class="mr-2"
+        class="m-auto"
       >
         <!--automatically add mr class if slot provided or loading -->
         <sw-spinner
@@ -24,7 +24,7 @@
       <span :class="spanClasses">
         <span
           v-if="isOutlineGradient && ($slots.prefix || loadingPrefix)"
-          class="mr-2"
+          class="m-auto"
         >
           <!--if outline gradient - need to place slots inside span -->
           <sw-spinner
@@ -42,7 +42,7 @@
   
         <span
           v-if="isOutlineGradient && ($slots.suffix || loadingSuffix)"
-          class="ml-2"
+          class="m-auto"
         >
           <!--if outline gradient - need to place slots inside span -->
           <sw-spinner
@@ -59,7 +59,7 @@
   
       <div
         v-if="!isOutlineGradient && ($slots.suffix || loadingSuffix)"
-        class="ml-2"
+        class="m-auto"
       >
         <!--automatically add ml class if slot provided or loading -->
         <sw-spinner
@@ -95,7 +95,7 @@
     loading?: boolean
     loadingPosition?: 'suffix' | 'prefix'
     disabled?: boolean
-    href?: string
+    href?: string|null
     tag?: string,
     combineWithPrefix?: boolean
   }
@@ -111,7 +111,7 @@
     loading: false,
     loadingPosition: 'prefix',
     disabled: false,
-    href: '',
+    href: null,
     tag: 'a',
     combineWithPrefix: false
   })

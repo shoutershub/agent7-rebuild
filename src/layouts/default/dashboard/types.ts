@@ -1,3 +1,5 @@
+import { RouteLocationNamedRaw, RouteRecordName } from "vue-router"
+
 type NavigationChildrenChildType = {
   name: string,
   routeName: string
@@ -5,7 +7,7 @@ type NavigationChildrenChildType = {
 export interface NavigationTypes {
     name: String,
     icon: String,
-    routeName: String,
+    routeName: RouteRecordName,
     section: String, 
     children?: NavigationChildrenChildType[]
   }
