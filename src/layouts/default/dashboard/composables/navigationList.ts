@@ -21,12 +21,12 @@ export const navigationLinks : NavigationTypes[] = [
         routeName: "dashboard.team",
         section: "top"
     },
-    {
-        name: "Billing",
-        icon: "billing",
-        routeName: "dashboard.billing",
-        section: "bottom"
-    },    
+    // {
+    //     name: "Billing",
+    //     icon: "billing",
+    //     routeName: "dashboard.settings.billing",
+    //     section: "bottom"
+    // },    
     {
         name: "Settings",
         icon: "settings",

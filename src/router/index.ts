@@ -21,7 +21,6 @@ import NotFound from '@/views/msic/NotFound.vue';
 import AccountPage from "@/views/dashboard/settings/account/AccountPage.vue";
 import WidgetSettingsPage from "@/views/dashboard/settings/widget/WidgetSettingsPage.vue";
 import ProfilePage from "@/views/dashboard/settings/profile/ProfilePage.vue";
-import GeneralSettingsPage from '@/views/dashboard/settings/general/GeneralSettingsPage.vue';
 
 // Dashboard
 import DashboardPage from "@/views/dashboard/dashboard/DashboardPage.vue"
@@ -50,7 +49,7 @@ const routes = [
     meta: { anonymousOnly: true },
     children: [
       { path: '', name: 'dashboard', component: DashboardPage },
-      { path: 'team', name: 'team', component: TeamPage },
+      { path: 'team', name: 'dashboard.team', component: TeamPage },
       { path: 'chat',
         children: [
           { path: '', name: 'dashboard.chat.index', component: ChatPage },
@@ -61,12 +60,12 @@ const routes = [
         meta: { anonymousOnly: true },
         component: SettingsLayout,
         children: [
-          { path: '', name: 'dashboard.settings.index', component: GeneralSettingsPage },
+          { path: '', name: 'dashboard.settings.index' },
           { path: 'account', name: 'dashboard.settings.account', component: AccountPage },
           { path: 'helpdesk', name: 'dashboard.settings.helpdesk', component: AccountPage },
           { path: 'widget', name: 'dashboard.settings.widget', component: WidgetSettingsPage },
           { path: 'profile', name: 'dashboard.settings.profile', component: ProfilePage },
-          { path: 'application-settings', name: 'dashboard.settings.application.settings', component: ApplicationSettingsPage },
+          { path: 'application-settings', name: 'dashboard.settings.application', component: ApplicationSettingsPage },
         ],
       },
     ],
