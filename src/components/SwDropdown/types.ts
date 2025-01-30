@@ -1,1 +1,16 @@
-export type DropdownPlacement = 'top' | 'bottom' | 'left' | 'right'
+export type DropdownPlacement =
+  "bottom" | "bottom-end"
+  | "auto"
+  | "auto-start"
+  | "auto-end"
+  | "top"
+  | "top-start"
+  | "top-end"
+  | "bottom"
+  | "bottom-start"
+  | "right"
+  | "right-start"
+  | "right-end"
+  | "left"
+  | "left-start"
+  | "left-end";

@@ -11,12 +11,13 @@ const baseLabelClasses = 'block mb-2 text-sm font-medium text-gray-900 dark:text
 
 // INPUT
 const defaultInputClasses =
-  'bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+  'border-slate-200 text-gray-900 sm:text-sm rounded-lg focus:ring-custom-500  block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
 const disabledInputClasses = 'cursor-not-allowed bg-gray-100'
 const inputSizeClasses: Record<InputSize, string> = {
   lg: 'p-4',
   md: 'p-2.5 text-sm',
   sm: 'p-2 text-sm',
+  xs: 'p-1 text-sm'
 }
 
 const successInputClasses = 'bg-green-50 border-green-500 dark:border-green-500 text-green-900 dark:text-green-400 placeholder-green-700 dark:placeholder-green-500 focus:ring-green-500 focus:border-green-500'

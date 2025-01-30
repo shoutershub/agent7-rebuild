@@ -2,20 +2,27 @@
   <!-- Needs v-if here to ensure provider provides value at run time,
        Thus the need for type casting injected values
   -->
-  <main class="dark:bg-gray-900 ml-[105px] h-full flex">
+  <div class="flex w-full">
     <left-sidebar></left-sidebar>
     <message-area></message-area>
     <!-- <chat-message-area></chat-message-area>  -->
     <right-sidebar></right-sidebar>
-  </main>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { type Ref, ref, provide } from "vue";
+import { type Ref, ref, provide, onMounted, onBeforeUnmount } from "vue";
 import LeftSidebar from "./left-sidebar/LeftSidebar.vue";
 import RightSidebar from "./right-sidebar/RightSidebar.vue";
 import MessageArea from "./message-area/MessageArea.vue";
 
+onMounted(() => {
+// Prevent scrolling on body
+  document.body.style.overflow = "hidden";
+});
+onBeforeUnmount(() => {
+  document.body.style.overflow = "";
+});
 //TODO: remaining this guy
 // import ChatMessageArea from "./components/ChatMessageArea.vue";
 import {
@@ -374,7 +381,7 @@ const activeOperator = {
 
 const clientOwner = ref<clientOwnerInterface[]>([
   {
-    id: 'NOT_SELECTED',
+    id: "NOT_SELECTED",
     name: "Not Selected",
     avatar: imageUrlEx6,
   },
@@ -392,20 +399,20 @@ const clientOwner = ref<clientOwnerInterface[]>([
     id: 4,
     name: "Hope Ransome",
     avatar: imageUrlEx4,
-  }, 
+  },
   {
     id: 4,
     name: "Neon Emmanuel",
     avatar: imageUrlEx4,
   },
 ]);
-//TODO: Push not selected in client side 
+//TODO: Push not selected in client side
 
 const activeClientOwner = ref<clientOwnerInterface>({
-    id: 4,
-    name: "Neon Emmanuel",
-    avatar: imageUrlEx4,
-})
+  id: 4,
+  name: "Neon Emmanuel",
+  avatar: imageUrlEx4,
+});
 // Using Provide & Inject to avoid prop drilling
 // See reason for decision: https://mokkapps.de/vue-tips/use-provide-inject-to-avoid-prop-drilling
 provide("items", items);
@@ -414,5 +421,5 @@ provide("internalContactList", internalContactList);
 provide("msg", msg);
 provide("activeOperator", activeOperator);
 provide("clientOwner", clientOwner);
-provide("activeClientOwner",  activeClientOwner);
+provide("activeClientOwner", activeClientOwner);
 </script>

@@ -5,6 +5,7 @@ import { createRouter, createWebHistory} from 'vue-router'
 import AuthDefaultayout from "@/layouts/default/auth/AuthLayout.vue";
 import DashboardLayout from "@/layouts/default/dashboard/DashboardLayout.vue"
 import SettingsLayout from "@/layouts/default/settings/SettingsLayout.vue"
+import WidgetLayout from "@/layouts/default/widget/WidgetLayout.vue"
 import ApplicationSettingsPage from '@/views/dashboard/settings/application-settings/ApplicationSettingsPage.vue';
 
 
@@ -19,8 +20,15 @@ import NotFound from '@/views/msic/NotFound.vue';
 
 //Settings
 import AccountPage from "@/views/dashboard/settings/account/AccountPage.vue";
-import WidgetSettingsPage from "@/views/dashboard/settings/widget/WidgetSettingsPage.vue";
 import ProfilePage from "@/views/dashboard/settings/profile/ProfilePage.vue";
+
+
+//Widget settings
+import SetupPage from "@/views/dashboard/widget/setup-page/SetupPage.vue";
+import CustomizationPage from "@/views/dashboard/widget/customization-page/CustomizationPage.vue";
+import ContactPage from "@/views/dashboard/widget/contact-page/ContactPage.vue";
+import AddonPage from "@/views/dashboard/widget/addon-page/AddonPage.vue";
+import RemovePropertyPage from "@/views/dashboard/widget/remove-property-page/RemovePropertyPage.vue";
 
 // Dashboard
 import DashboardPage from "@/views/dashboard/dashboard/DashboardPage.vue"
@@ -50,10 +58,22 @@ const routes = [
     children: [
       { path: '', name: 'dashboard', component: DashboardPage },
       { path: 'team', name: 'dashboard.team', component: TeamPage },
-      { path: 'chat',
+      { path: 'conversations',
         children: [
-          { path: '', name: 'dashboard.chat.index', component: ChatPage },
+          { path: '', name: 'dashboard.conversations.index', component: ChatPage },
         ]
+      },
+      {
+        path: 'widget',
+        meta: { anonymousOnly: true },
+        component: WidgetLayout,
+        children: [
+          { path: 'setup', name: 'dashboard.widget.index',  component: SetupPage },
+          { path: 'customization', name: 'dashboard.widget.customization', component: CustomizationPage },
+          { path: 'contact', name: 'dashboard.widget.contact', component: ContactPage },
+          { path: 'addon', name: 'dashboard.widget.addon', component: AddonPage },
+          { path: 'remove-property', name: 'dashboard.widget.remove', component: RemovePropertyPage },
+        ],
       },
       {
         path: 'settings',
@@ -63,7 +83,7 @@ const routes = [
           { path: '', name: 'dashboard.settings.index' },
           { path: 'account', name: 'dashboard.settings.account', component: AccountPage },
           { path: 'helpdesk', name: 'dashboard.settings.helpdesk', component: AccountPage },
-          { path: 'widget', name: 'dashboard.settings.widget', component: WidgetSettingsPage },
+          { path: 'widget', name: 'dashboard.settings.widget', component: SetupPage },
           { path: 'profile', name: 'dashboard.settings.profile', component: ProfilePage },
           { path: 'application-settings', name: 'dashboard.settings.application', component: ApplicationSettingsPage },
         ],
@@ -72,9 +92,16 @@ const routes = [
   }
 ]
 
+
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    return { top: 0 };
+  }
+  
 })
+
+
 
 export default router

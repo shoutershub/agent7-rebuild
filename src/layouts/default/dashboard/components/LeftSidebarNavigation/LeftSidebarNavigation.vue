@@ -1,96 +1,46 @@
 <template>
   <aside
     id="sidebar-double"
-    class="flex z-40 fixed left-0 h-full transition-transform -translate-x-full lg:translate-x-0 border-r bg-white border-gray-200 w-[105px]"
+    :class="getsizeBarSize"
     aria-label="Sidebar"
   >
+    <div class="pt-10">
+      <img v-if="sidebarSize.getSideBarSize" class="w-[150px] m-auto" src="@/assets/images/logo-light.png" />
+      <img v-else  class="w-[28px] m-auto" src="@/assets/images/logo-sm.png"/>
+    </div>
     <div
-      class="overflow-y-auto z-30 py-5 px-3 w-30 h-full dark:bg-gray-800 dark:border-gray-700 flex flex-col justify-between"
+      class="z-30 flex flex-col justify-between h-full px-3 py-5 overflow-y-auto w-30 dark:bg-gray-800 dark:border-gray-700"
     >
-      <ul class="space-y-2">
-        <li
-          v-for="(item, index) in topNavigationLinks"
-          :key="index"
-          class="min-h-[60px]"
-        >
-          <router-link
-            :to="{ name: item.routeName }"
-            class="flex flex-col group/item text-center items-center p-2 text-gray-400 rounded-lg transition duration-75 dark:text-gray-400 hover:text-gray-900 dark:hover:text-whit dark:hover:bg-gray-700"
-          >
-            <img
-              class="opacity-[0.5] group-hover/item:opacity-[1]"
-              :class="{ 'opacity-[1]': $route.name == item.routeName }"
-              width="25px"
-              height="25px"
-              :src="getSvgIcon(item.icon)"
-            />
-            <span
-              class="text-[11px] mt-2 font-bold invisible group-hover/item:visible"
-              >{{ item.name }}</span
-            >
-          </router-link>
-        </li>
-      </ul>
-
-      <ul class="text-center justify-center w-full dark:bg-gray-800 z-20">
-        <li>
-          <sw-translator position="sidebar" :showArrow="false"></sw-translator>
-        </li>
-        <li
-          v-for="(item, index) in bottomNavigationLinks"
-          :key="index"
-          class="min-h-[60px]"
-        >
-          <router-link
-            :to="{ name: item.routeName }"
-            class="flex flex-col group/item text-center items-center p-2 text-gray-400 rounded-lg transition duration-75 dark:text-gray-400 hover:text-gray-900 dark:hover:text-whit dark:hover:bg-gray-700"
-          >
-            <img
-              class="opacity-[0.5] group-hover/item:opacity-[1]"
-              width="25px"
-              height="25px"
-              :src="getSvgIcon(item.icon)"
-            />
-            <span
-              class="text-[11px] mt-2 font-bold invisible group-hover/item:visible"
-              >{{ item.name }}</span
-            >
-          </router-link>
-        </li>
-        <li class="min-h-[60px]">
-          <a
-            href="#"
-            class="flex flex-col group/item text-center items-center p-2 text-gray-400 rounded-lg transition duration-75 dark:text-gray-400 hover:text-gray-900 dark:hover:text-whit dark:hover:bg-gray-700"
-          >
-            <img
-              class="opacity-[0.5] group-hover/item:opacity-[1]"
-              width="25px"
-              height="25px"
-              :src="getSvgIcon('toggle')"
-            />
-            <span
-              class="text-[11px] mt-2 font-bold invisible group-hover/item:visible"
-              >Go offline</span
-            >
-          </a>
-        </li>
-      </ul>
+      <sw-sidebar-links :navigationLinks="navLinks" />
     </div>
   </aside>
 </template>
 
 <script setup lang="ts">
+import { SwSidebarLinks } from "@/global";
 import { navigationLinks } from "../../composables/navigationList";
-import { useImageUrl } from "@/utils/helpers";
-import { SwTranslator } from "@/global";
+import { SideBarStore } from "@/store/SidebarStore/SidebarStore";
+import { computed } from "vue";
+import classNames from 'classnames'
+import { twMerge } from 'tailwind-merge'
 
-const { getSvgIcon } = useImageUrl();
-
-const topNavigationLinks = navigationLinks.filter((item) => {
+const navLinks = navigationLinks.filter((item) => {
   return item.section == "top";
 });
 
-const bottomNavigationLinks = navigationLinks.filter((item) => {
-  return item.section == "bottom";
-});
+const sidebarSize = SideBarStore()
+
+const getsizeBarSize = computed(() => {
+  const baseClasses = "flex flex-col z-40 fixed left-0 h-full transition-transform -translate-x-full lg:translate-x-0 border-r bg-white border-gray-200 w-[250px]"
+  const miniSidebarClass = "w-[100px]"
+
+  return twMerge(
+    classNames(
+      baseClasses,
+      { [miniSidebarClass]: !sidebarSize.getSideBarSize },
+    ),
+  )
+})
+
+
 </script>

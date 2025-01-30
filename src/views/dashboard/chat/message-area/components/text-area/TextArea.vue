@@ -1,44 +1,53 @@
 <template>
-  <div class=" mx-4 border-gray-300 px-0 text-right" v-if="activateMessageType == 'email'"> Email will be sent to neon@gmail.com //From internalContactList </div>
-
-  <div
-    :class="textAreaClass"
-    @focusout="removeFocusOnTextBox"
-    @focusin="focusChatMessageTextBox"
-  >
-    <div class="flex flex-row mb-2">
-      <div
-        v-for="item in messageType"
-        @click="changeMessageText(item)"
-        :class="{'mr-3 mt-3 mb-3 text-gray-900 text-[15px] cursor-pointer border-b-2 border-gray-900': activateMessageType === item, 'mr-3 mt-3 mb-3 cursor-pointer text-gray-900 text-[15px]': activateMessageType !== item }"
-      >
-        {{ textToUpperCase(item)}}
+  <div class="relative">
+    <div
+      class="absolute w-full px-0 mx-4 mb-2 text-base text-right border-gray-300 -top-8"
+      v-show="activateMessageType == 'email'"
+    >
+      Email will be sent to neon@gmail.com
+    </div>
+    <div
+      :class="textAreaClass"
+      @focusout="removeFocusOnTextBox"
+      @focusin="focusChatMessageTextBox"
+    >
+      <div class="flex flex-row mb-2">
+        <div
+          v-for="item in messageType"
+          @click="changeMessageText(item)"
+          :class="{
+            'mr-3 mt-3 mb-3 text-gray-900 text-[15px] cursor-pointer border-b-2 border-gray-900':
+              activateMessageType === item,
+            'mr-3 mt-3 mb-3 cursor-pointer text-gray-900 text-[15px]':
+              activateMessageType !== item,
+          }"
+        >
+          {{ textToUpperCase(item) }}
+        </div>
       </div>
-    </div>
 
-    <div>
-
-  
-      <textarea
-        ref="messageBox"
-        v-model="messageText"
-        placeholder="Enter your message"
-        autocomplete="off"
-        @keyup="resizeCommentAreaHeight"
-        row="1"
-        maxlength="1000"
-        class="rounded-md border-0 w-full bg-white round min-h-[47px] focus:ring-transparent resize-none overflow-y-auto pl-0 pt-[5px] pb-[10px]"
-      ></textarea>
-    </div>
-    <div class="flex flex-row justify-end items-center">
-      <!-- Need to remove from this or use state management -->
-      <chat-gif></chat-gif>
-      <chat-emoji v-on:insert:emoji="addEmojiToTextArea($event)"></chat-emoji>
-      <chat-attach-file></chat-attach-file>
-      <div class="mr-3 mt-3 mb-3">
-        <button @click="sendMessage" :class="sendButtonClass">
-          <send-icon class="w-[1.25rem] h-[1.25rem]" />
-        </button>
+      <div>
+        <textarea
+          ref="messageBox"
+          v-model="messageText"
+          placeholder="Enter your message"
+          autocomplete="off"
+          @keyup="resizeCommentAreaHeight"
+          row="1"
+          maxlength="1000"
+          class="rounded-md border-0 w-full bg-white round min-h-[47px] focus:ring-transparent resize-none overflow-y-auto pl-0 pt-[5px] pb-[10px]"
+        ></textarea>
+      </div>
+      <div class="flex flex-row items-center justify-end">
+        <!-- Need to remove from this or use state management -->
+        <chat-gif></chat-gif>
+        <chat-emoji v-on:insert:emoji="addEmojiToTextArea($event)"></chat-emoji>
+        <chat-attach-file></chat-attach-file>
+        <div class="mt-3 mb-3 mr-3">
+          <button @click="sendMessage" :class="sendButtonClass">
+            <send-icon class="w-[1.25rem] h-[1.25rem]" />
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -53,7 +62,7 @@ import { SendIcon } from "@/global";
 import { twMerge } from "tailwind-merge";
 import { messageInterFace } from "../../../types";
 import { useImageUrl } from "@/utils/helpers";
-import {msgAddedToListEventStore} from "@/store/MsgAddedToListEventStore";
+import { msgAddedToListEventStore } from "@/store/MsgAddedToListEventStore";
 
 const { getImageUrl } = useImageUrl();
 const imageUrlEx1 = getImageUrl("profile-picture-1.jpg");
@@ -119,7 +128,6 @@ watch(
   }
 );
 
-
 const customEvent = msgAddedToListEventStore();
 function sendMessage() {
   msg.value.push({
@@ -135,19 +143,15 @@ function sendMessage() {
   customEvent.addEventMessage("update:scrollbar");
 }
 
-const messageType = ref([
-  'chat',
-  'email',
-  'sms'
-]);
+const messageType = ref(["chat", "email", "sms"]);
 
-const activateMessageType = ref('chat');
+const activateMessageType = ref("chat");
 
-function textToUpperCase(text: string){
+function textToUpperCase(text: string) {
   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
-function changeMessageText(messageType: string){
+function changeMessageText(messageType: string) {
   activateMessageType.value = messageType;
 }
 </script>

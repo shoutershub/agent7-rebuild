@@ -4,8 +4,8 @@
     class="w-[50%] h-[100vh] border-r border-gray-200 dark:bg-gray-800 dark:border-gray-700 transition-transform left-0 top-0 transform-none"
   >
     <div>
-      <div class="mt-2 mb-2 pl-4 pr-4 flex justify-between">
-        <h5 class="font-bold text-gray-900 text-lg">
+      <div class="flex justify-between pl-4 pr-4 mt-2 mb-2">
+        <h5 class="text-lg font-bold text-gray-900">
           {{ activeOperator.name }}
         </h5>
         <button>
@@ -22,7 +22,7 @@
     </div>
 
     <div class="flex flex-col justify-between h-[calc(100%-90px)]">
-      <div class="flex h-full flex-grow-1 items-end overflow-hidden">
+      <div class="flex items-end h-full overflow-hidden flex-grow-1">
         <PerfectScrollbar ref="scrollbar" class="scrollarea">
           <div
             :class="activeOperatorClass(item.userId)"
@@ -69,10 +69,10 @@
                 <sw-button
                   @click="deleteChatRecord(item.id)"
                   v-if="item.userId == activeOperator.userId && !item.isDeleted"
-                  class="w-auto p-0 invisible group-hover/message-items:visible"
+                  class="invisible w-auto p-0 group-hover/message-items:visible"
                   color="transparent"
                 >
-                  <span class="text-red-400 text-xs hover:text-red-700"
+                  <span class="text-xs text-red-400 hover:text-red-700"
                     >Delete</span
                   >
                 </sw-button>
@@ -122,7 +122,7 @@
             @keyup="resizeChatAreaHeight"
           ></textarea> -->
         </div>
-        <div class="flex flex-row justify-end items-center">
+        <div class="flex flex-row items-center justify-end">
           <div class="mr-3 mt-3 mb-3 text-gray-900 text-[15px]">
             <sw-dropdown
               buttonclass="border-0 px-0 py-0"
@@ -171,7 +171,7 @@
                     <div>
                       <div v-if="!showGifResult">
                         <div
-                          class="suggested mb-3 text-sm font-semibold text-gray-600 mt-3"
+                          class="mt-3 mb-3 text-sm font-semibold text-gray-600 suggested"
                         >
                           Suggested
                         </div>
@@ -189,7 +189,7 @@
 
                       <div v-if="showGifResult">
                         <div
-                          class="suggested mb-3 text-sm font-semibold text-gray-600 mt-3"
+                          class="mt-3 mb-3 text-sm font-semibold text-gray-600 suggested"
                         >
                           Showing Search Result for: {{ gifSearchTerm }}
                         </div>
@@ -314,14 +314,14 @@
                 <div class="relative block">
                   <label v-bind="getRootProps()" :class="dropZoneClass">
                     <div
-                      class="flex flex-col justify-center items-center pt-5 pb-6"
+                      class="flex flex-col items-center justify-center pt-5 pb-6"
                     >
                       <p class="mb-2 text-sm text-red-500 dark:text-gray-400">
                         {{ fileDropError }}
                       </p>
                       <svg
                         aria-hidden="true"
-                        class="mb-3 w-10 h-10 text-gray-400"
+                        class="w-10 h-10 mb-3 text-gray-400"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -354,7 +354,7 @@
               </template>
             </sw-dropdown>
           </div>
-          <div class="mr-3 mt-3 mb-3">
+          <div class="mt-3 mb-3 mr-3">
             <button
               class="w-[30px] h-[30px] bg-gray-300 rounded-full flex justify-center items-center mb-[8px]"
             >
@@ -377,10 +377,10 @@
           <div class="mt-20">
             <img class="w-[300px] m-auto" :src="activateImageUrl" />
           </div>
-          <div class="text-center mt-40">
+          <div class="mt-40 text-center">
             <sw-button class="w-auto" color="gray">
               <div class="flex">
-                <div class="align-baseline mr-2">
+                <div class="mr-2 align-baseline">
                   <download-icon class="w-[20px] h-[20px]" />
                 </div>
                 <div>Download</div>

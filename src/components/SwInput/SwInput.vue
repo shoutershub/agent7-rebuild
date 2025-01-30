@@ -4,10 +4,10 @@
       v-if="label"
       :class="labelClasses"
     >{{ label }}</label>
-    <div class="flex relative items-center">
+    <div class="relative flex items-center">
       <div
         v-if="$slots.prefix"
-        class="w-10 flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none overflow-hidden"
+        class="absolute inset-y-0 left-0 flex items-center w-10 pl-3 overflow-hidden pointer-events-none"
       >
         <slot name="prefix" />
       </div>
@@ -67,7 +67,6 @@ import {
   type ValidationStatus,
   validationStatusMap,
 } from './types'
-import { error } from 'console'
 
 interface InputProps {
   name: string,

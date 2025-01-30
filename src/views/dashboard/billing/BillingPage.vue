@@ -1,5 +1,5 @@
 <template>
-    <main class="dark:bg-gray-900 lg:ml-[105px] h-full">
+    <main class="dark:bg-gray-900 lg:ml-[250px] h-full">
       <div
         class="p-8 bg-white block sm:flex items-center justify-between dark:bg-gray-800 dark:border-gray-700"
       >

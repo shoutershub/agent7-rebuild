@@ -12,6 +12,7 @@ import FlagIcon from 'vue-flag-icon';
 import pinia from '@/store'
 import i18n from "@/plugins/languagePlugin/languagePlugin";
 import { PerfectScrollbarPlugin } from 'vue3-perfect-scrollbar';
+import Popper from 'vue3-popper';
 
 import '@/assets/scss/gloabl.scss';
 import 'vue3-perfect-scrollbar/style.css'
@@ -27,4 +28,5 @@ export function registerPlugins (app: App) {
     .use(pinia)
     .use(i18n)
     .use(PerfectScrollbarPlugin)
+    .component("Popper", Popper)
 }

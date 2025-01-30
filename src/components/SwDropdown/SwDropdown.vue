@@ -1,12 +1,12 @@
 <template>
-  <div ref="wrapper" class="inline-flex relative">
-    <div class="inline-flex items-center">
+    <Popper ref="wrapper"  :placement="placement">
       <sw-slot-listener @click="onToggle">
         <slot name="trigger">
           <sw-button
             :disabled="disabled"
             :class="buttonclass"
             :color="buttonColor"
+            type="button"
             ref="reference"
           >
             <slot name="title"> </slot>
@@ -29,36 +29,29 @@
           </sw-button>
         </slot>
       </sw-slot-listener>
-    </div>
-    <transition :name="transitionName">
-      <div
-        v-if="visible"
-        ref="content"
-        :class="[contentClasses]"
-        :style="contentStyles"
-      >
-        <sw-slot-listener @click="onHide">
-          <slot class="unset" />
-        </sw-slot-listener>
-      </div>
-    </transition>
-  </div>
+
+      <template v-if="visible" ref="contentRef" #content>
+        <div :class="contentClasses">
+          <sw-slot-listener @click="onHide">
+            <slot />
+          </sw-slot-listener>
+        </div>
+      </template>
+    </Popper>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, toRef } from "vue";
+import { computed, ref } from "vue";
 import { onClickOutside } from "@vueuse/core";
 import type { DropdownPlacement } from "./types";
 import SwButton from "@/components/SwButton/SwButton.vue";
-import SwSlotListener from "@/components/utils/SwSlotListener/SwSlotListener.vue";
-import { useDropdownClasses } from "./composables/useDropdownClasses";
 import type { ButtonVariant } from "@/components/SwButton/types";
-
+import SwSlotListener from "../utils/SwSlotListener/SwSlotListener.vue";
 const visible = ref(false);
 const onHide = () => {
   if (props.closeInside) visible.value = false;
 };
-function hideDropdown(){
+function hideDropdown() {
   visible.value = false;
 }
 
@@ -69,7 +62,7 @@ const props = withDefaults(
     placement?: DropdownPlacement;
     text?: string;
     transition?: string;
-    closeInside: boolean;
+    closeInside?: boolean;
     buttonColor?: ButtonVariant;
     buttonclass?: string;
     showDropDownArrow?: boolean;
@@ -77,7 +70,7 @@ const props = withDefaults(
     dropDownType?: string;
   }>(),
   {
-    placement: "bottom",
+    placement: "bottom-end",
     text: "",
     transition: "",
     closeInside: false,
@@ -89,104 +82,25 @@ const props = withDefaults(
   }
 );
 
-const placementTransitionMap: Record<DropdownPlacement, string> = {
-  bottom: "to-bottom",
-  left: "to-left",
-  right: "to-right",
-  top: "to-top",
-};
-
-const transitionName = computed(() => {
-  if (props.transition === null) return placementTransitionMap[props.placement];
-  return props.transition;
-});
-
-const content = ref<HTMLDivElement>();
 const wrapper = ref<HTMLDivElement>();
 
-const { contentClasses, contentStyles } = useDropdownClasses({
-  placement: toRef(props, "placement"),
-  visible,
-  contentRef: content,
-});
+const contentClasses =
+  "z-10 bg-white divide-y divide-gray-100 rounded shadow-md  dark:bg-gray-700";
 
 onClickOutside(wrapper, () => {
   if (!visible.value) return;
   visible.value = false;
 });
 
-const dropDownArrowClass = computed( () => {
-  if(!visible.value ){
+const dropDownArrowClass = computed(() => {
+  if (!visible.value) {
     return "w-4 h-4 ml-2 transition ease-in-out delay-150";
   } else {
     return "w-4 h-4 ml-2 rotate-180 transition ease-in-out delay-150";
   }
-})
+});
 
 defineExpose({
-  hideDropdown
-})
-
+  hideDropdown,
+});
 </script>
-
-<style scoped>
-/* transitions */
-.to-bottom-enter-active,
-.to-bottom-leave-active,
-.to-left-enter-active,
-.to-left-leave-active,
-.to-right-enter-active,
-.to-right-leave-active,
-.to-top-enter-active,
-.to-top-leave-active {
-  transition: all 250ms;
-}
-
-/* to top */
-.to-top-enter-active,
-.to-top-leave-to {
-  opacity: 0;
-  transform: translateY(10px);
-}
-.to-top-leave,
-.to-top-enter-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* to right */
-.to-right-enter-active,
-.to-right-leave-to {
-  opacity: 0;
-  transform: translateX(-10px);
-}
-.to-right-leave,
-.to-right-enter-to {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* to bottom */
-.to-bottom-enter-active,
-.to-bottom-leave-to {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-.to-bottom-leave,
-.to-bottom-enter-to {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* to left */
-.to-left-enter-active,
-.to-left-leave-to {
-  opacity: 0;
-  transform: translateX(10px);
-}
-.to-left-leave,
-.to-left-enter-to {
-  opacity: 1;
-  transform: translateX(0);
-}
-</style>

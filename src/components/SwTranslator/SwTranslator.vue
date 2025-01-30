@@ -1,62 +1,42 @@
 <template>
   <sw-dropdown
-    buttonclass="border-none"
+    :buttonclass="buttonClass"
     placement="top"
-    buttonColor="alternative"
+    :buttonColor="buttonColor"
     :closeInside="true"
     :show-drop-down-arrow="props.showArrow"
-    v-if="props.position !== 'sidebar'"
   >
     <template #title>
-      <flag class="mr-2" :iso="defaultLanguage.flag" v-bind:squared="false" />
-      <span v-if="props.position == 'default'">{{
-        defaultLanguage.title
-      }}</span>
+      <div>
+        <flag
+          class="w-5 h-5 bg-cover rounded-full lead-0"
+          :iso="defaultLanguage.flag"
+          v-bind:squared="false"
+        />
+        <span v-if="props.position == 'default'">{{
+          defaultLanguage.title
+        }}</span>
+      </div>
     </template>
     <div
       class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-[133px] dark:bg-gray-700"
     >
       <ul class="space-y-2 text-sm" aria-labelledby="dropdownDefault">
         <li
-          class="flex items-center hover:bg-slate-100 cursor-pointer pb-2 pt-2 rounded"
+          class="flex items-center pt-2 pb-2 rounded cursor-pointer hover:bg-slate-100"
           v-for="entry in availableLanguages"
           @click="changeLanguageOption(entry)"
         >
-          <flag class="ml-5" :iso="entry.flag" v-bind:squared="false" />
+          <flag
+            class="w-5 h-5 ml-3 mr-2 bg-cover rounded-full lead-0"
+            :iso="entry.flag"
+            v-bind:squared="false"
+          />
           <div
-            class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100"
+            v-if="showNameInDropdown"
+            class="text-sm font-medium text-gray-900 dark:text-gray-100"
           >
             {{ entry.title }}
-          </div>
-        </li>
-      </ul>
-    </div>
-  </sw-dropdown>
-  <sw-dropdown
-    buttonclass="border-none hover:bg-transparent focus:ring-transparent !mb-6"
-    placement="top"
-    buttonColor="alternative"
-    :closeInside="true"
-    :show-drop-down-arrow="props.showArrow"
-    v-else
-  >
-    <template #title>
-      <flag :iso="defaultLanguage.flag" v-bind:squared="false" />
-      <span v-if="props.position !== 'sidebar'">{{
-        defaultLanguage.title
-      }}</span>
-    </template>
-    <div
-      class="z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-[50px] dark:bg-gray-700"
-    >
-      <ul class="space-y-2 text-sm" aria-labelledby="dropdownDefault">
-        <li
-          class="flex items-center hover:bg-slate-100 cursor-pointer pb-2 pt-2 rounded"
-          v-for="entry in availableLanguages"
-          @click="changeLanguageOption(entry)"
-        >
-          <div class="w-full">
-            <flag :iso="entry.flag" v-bind:squared="false" />
           </div>
         </li>
       </ul>
@@ -71,6 +51,7 @@ import { availableLanguages } from "@/store/LanguageStore/AvailableLanguages";
 import { languageStore } from "@/store/LanguageStore/LangugageStore";
 import { LanguageTypes } from "@/store/LanguageStore/types";
 import { TranslatorPositionType } from "./types";
+import { ButtonVariant } from "../SwButton/types";
 
 const languageOption = languageStore();
 
@@ -85,11 +66,22 @@ const defaultLanguage = computed(() => {
 interface TranslatorProps {
   position?: TranslatorPositionType;
   showArrow?: boolean;
+  showNameInDropdown?: boolean;
+  buttonColor?: ButtonVariant;
+  buttonClass?: string
 }
 
 const props = withDefaults(defineProps<TranslatorProps>(), {
   position: "default",
   showArrow: true,
+  showNameInDropdown: true,
+  buttonColor: "alternative",
+  buttonClass: ""
 });
-
 </script>
+
+<style scoped>
+.fi {
+  line-height: 1.9;
+}
+</style>

@@ -5,11 +5,11 @@ export type ButtonClassMap<T extends string> = { hover: Record<T, string>; defau
 
 const buttonColorClasses: ButtonClassMap<ButtonVariant> = {
   default: {
-    default: 'text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:focus:ring-primary-800',
+    default: 'text-white bg-custom-600 hover:bg-custom-700 focus:ring-4 focus:outline-none focus:ring-custom-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-custom-600 dark:focus:ring-custom-800',
     blue: 'text-white bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg dark:bg-blue-600 focus:outline-none dark:focus:ring-blue-800',
     alternative:
-      'font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600',
-    dark: 'text-white bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg dark:bg-gray-800 dark:focus:ring-gray-700 dark:border-gray-700',
+      'font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600',
+    dark: 'text-white bg-gray-800 font-medium rounded-lg dark:bg-gray-800  dark:border-gray-700',
     light:
       'text-gray-900 bg-white border border-gray-300 focus:outline-none focus:ring-4 focus:ring-gray-200 font-medium rounded-lg dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:focus:ring-gray-700',
     green: 'focus:outline-none text-white bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg dark:bg-green-600 dark:focus:ring-green-800',
@@ -19,12 +19,13 @@ const buttonColorClasses: ButtonClassMap<ButtonVariant> = {
     pink: 'focus:outline-none text-white bg-pink-700 focus:ring-4 focus:ring-pink-300 font-medium rounded-lg dark:bg-pink-600 dark:focus:ring-pink-900',
     transparent: '',
     gray: 'bg-gray-200 text-gray-900 font-bold rounded-lg text-sm text-center dark:border-gray-600 dark:text-gray-400 dark:focus:ring-gray-800',
+    slate: ' bg-slate-100  focus:text-white focus:bg-slate-600 focus:ring focus:ring-slate-100 active:text-white active:bg-slate-600 active:ring active:ring-slate-100 font-bold rounded-lg text-sm text-center dark:border-gray-600 dark:text-gray-400 dark:focus:ring-gray-800',
     none: '',
   },
   hover: {
     default: 'dark:hover:bg-primary-700',
     blue: 'hover:bg-blue-800 dark:hover:bg-blue-700',
-    alternative: 'hover:bg-gray-100 hover:text-blue-700 dark:hover:text-white dark:hover:bg-gray-700',
+    alternative: 'hover:bg-gray-100 hover:text-gray-700 dark:hover:text-white dark:hover:bg-gray-700',
     dark: 'hover:bg-gray-900 dark:hover:bg-gray-700',
     light: 'hover:bg-gray-100 dark:hover:border-gray-600',
     green: 'hover:bg-green-800 dark:hover:bg-green-700',
@@ -34,6 +35,7 @@ const buttonColorClasses: ButtonClassMap<ButtonVariant> = {
     pink: 'hover:bg-pink-800 dark:hover:bg-pink-700',
     transparent: '',
     gray: 'hover:text-gray-800 hover:bg-gray-300 dark:hover:text-white dark:hover:bg-yellow-400',
+    slate: 'hover:text-white hover:bg-slate-600',
     none: ''
   },
 }
@@ -54,6 +56,7 @@ const buttonOutlineColorClasses: ButtonClassMap<Exclude<ButtonVariant, 'light' |
     yellow:
       'text-yellow-400 border border-yellow-400 focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg text-sm text-center dark:border-yellow-300 dark:text-yellow-300 dark:focus:ring-yellow-900',
     gray: 'text-gray-300 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm text-center dark:border-gray-600 dark:text-gray-400 dark:focus:ring-gray-800',
+    slate: 'text-gray-300 border border-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm text-center dark:border-gray-600 dark:text-gray-400 dark:focus:ring-gray-800',
     none: ''
   },
   hover: {
@@ -67,6 +70,7 @@ const buttonOutlineColorClasses: ButtonClassMap<Exclude<ButtonVariant, 'light' |
     red: 'hover:text-white hover:bg-red-800 dark:hover:text-white dark:hover:bg-red-600',
     yellow: 'hover:text-white hover:bg-yellow-500 dark:hover:text-white dark:hover:bg-yellow-400',
     gray: 'hover:text-gray- hover:bg-gray-500 dark:hover:text-white dark:hover:bg-yellow-400',
+    slate: 'hover:text-gray- hover:bg-gray-500 dark:hover:text-white dark:hover:bg-yellow-400',
     none: ''
   },
 }

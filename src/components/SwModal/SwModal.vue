@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40" />
+    <div class="fixed inset-0 z-40 bg-gray-900 bg-opacity-50 dark:bg-opacity-80" />
     <div
       ref="modalRef"
-      class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full justify-center items-center flex"
+      class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center w-full overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full"
       tabindex="0"
       @click.self="clickOutside"
       @keyup.esc="closeWithEsc"
@@ -24,8 +24,8 @@
           <!-- Modal header -->
           <div
             v-if="showHeader"
-            :class="$slots.header ? 'border-gray-200 dark:border-gray-600 ml-3 text-lg' : ''"
-            class="p-4 rounded-t flex justify-between items-center"
+            :class="$slots.header ? 'border-gray-200 dark:border-gray-600 pl-6 pr-6 text-lg' : ''"
+            class="flex items-center justify-between p-4 rounded-t"
           >
             <slot name="header" />
             <button
@@ -52,14 +52,14 @@
           <!-- Modal body -->
           <div
             :class="$slots.header ? '' : 'pt-0'"
-            class="pl-6 pt-3 pr-6 pb-6" 
+            class="pt-3 pb-6 pl-6 pr-6" 
           >
             <slot name="body" />
           </div>
           <!-- Modal footer -->
           <div
             v-if="$slots.footer"
-            class="p-6 rounded-b border-gray-200 border-t dark:border-gray-600"
+            class="p-6 border-t border-gray-200 rounded-b dark:border-gray-600"
           >
             <slot name="footer" />
           </div>
@@ -70,7 +70,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref, type Ref} from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, type Ref} from 'vue'
 import type { ModalSize } from './types'
 
 interface ModalProps {
@@ -89,11 +89,11 @@ const props = withDefaults(defineProps<ModalProps>(), {
 
 const emit = defineEmits(['close', 'click:outside'])
 const modalSizeClasses = {
-  xs: 'min-w-[20rem]',
-  sm: 'min-w-[24rem]',
-  md: 'min-w-[28rem]',
-  lg: 'min-w-[32rem]',
-  xl: 'min-w-[36rem]',
+  xs: 'w-[20rem] min-w-[20rem]',
+  sm: 'w-[24rem] min-w-[24rem]',
+  md: 'w-[28rem] min-w-[28rem]',
+  lg: 'w-[32rem] min-w-[32rem]',
+  xl: 'w-[36rem] min-w-[36rem]',
   '2xl': 'min-w-[42rem]',
   '3xl': 'min-w-[48rem]',
   '4xl': 'min-w-[56rem]',
@@ -118,6 +118,8 @@ function closeWithEsc () {
 }
 const modalRef: Ref<HTMLElement | null> = ref(null)
 onMounted(() => {
+  document.body.style.overflow = "hidden";
+
   if (modalRef.value) {
     modalRef.value.focus()
   }
@@ -144,4 +146,7 @@ const modalWrapperClassInner = computed(() => {
 
 
 
+onBeforeUnmount(() => {
+  document.body.style.overflow = "";
+});
 </script>

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="ml-4 mb-4 text-gray-500 text-sm font-bold">Client</div>
-    <div class="bg-white ml-3 mr-3 rounded-md">
-      <div class="flex items-center p-4 hover:bg-gray-200 cursor-pointer">
+    <div class="mt-4 mb-4 ml-4 text-sm font-bold text-gray-500">Client</div>
+    <div class="ml-3 mr-3 bg-white rounded-md">
+      <div class="flex items-center p-4 cursor-pointer hover:bg-gray-200">
         <div class="ml-2 mr-4">
           <sw-tooltip theme="dark" nudgeX="5" :arrowOverflow="true">
             <template #trigger>
@@ -28,7 +28,7 @@
             <template #title>
               <div class="flex items-center">
                 <div>
-                  <img class="w-6 h-6 rounded-full mr-3" :src="activeClientOwner.avatar" />
+                  <img class="w-6 h-6 mr-3 rounded-full" :src="activeClientOwner.avatar" />
                 </div>
                 <div class="text-sm text-gray-600">{{activeClientOwner.name}}</div>
               </div>
@@ -50,12 +50,12 @@
                 <div class="block">
                   <div v-for="(item, index) in clientOwner" :key="index" @click="setClientOwner(item)" class="mb-2 last:mb-0">
                     <div
-                      class="inline-block border-0 w-full p-2 pl-4 hover:bg-gray-200 text-gray-800 text-xs font-medium dark:bg-gray-700"
+                      class="inline-block w-full p-2 pl-4 text-xs font-medium text-gray-800 border-0 hover:bg-gray-200 dark:bg-gray-700"
                     >
                       <div class="flex items-center">
                         <div>
                           <img
-                            class="w-6 h-6 rounded-full mr-3"
+                            class="w-6 h-6 mr-3 rounded-full"
                             :src="item.avatar"
                           />
                         </div>
@@ -70,7 +70,7 @@
         </div>
       </div>
 
-      <div class="flex items-center p-4 hover:bg-gray-200 cursor-pointer">
+      <div class="flex items-center p-4 cursor-pointer hover:bg-gray-200">
         <div class="ml-2 mr-4">
           <sw-tooltip theme="dark" nudgeX="5" :arrowOverflow="true">
             <template #trigger>
@@ -79,19 +79,19 @@
             <template class="relative" #content> Tag </template>
           </sw-tooltip>
         </div>
-        <div class="text-sm text-gray-600 w-full">
+        <div class="w-full text-sm text-gray-600">
           <div class="bg-white pt-[5px] pl-[5px]">
             <span
               id="badge-dismiss-default"
               v-for="(item, index) in chatTags"
               :key="index"
-              class="inline-flex mb-2 items-center px-2 py-1 rounded-full me-2 text-xs font-medium text-gray-600 bg-gray-100 dark:bg-gray-900 dark:text-gray-300"
+              class="inline-flex items-center px-2 py-1 mb-2 text-xs font-medium text-gray-600 bg-gray-100 rounded-full me-2 dark:bg-gray-900 dark:text-gray-300"
             >
               {{ item.name }}
               <sw-button
                 color="transparent"
                 type="button"
-                class="inline-flex items-center p-1 ms-2 text-xs text-gray-400 bg-transparent rounded-sm"
+                class="inline-flex items-center p-1 text-xs text-gray-400 bg-transparent rounded-sm ms-2"
                 data-dismiss-target="#badge-dismiss-default"
                 aria-label="Remove"
                 @click="removeTag(item.id, index)"
@@ -124,7 +124,7 @@
         </div>
       </div>
 
-      <div class="flex items-center p-4 hover:bg-gray-200 cursor-pointer">
+      <div class="flex items-center p-4 cursor-pointer hover:bg-gray-200">
         <div class="ml-2 mr-4">
           <sw-tooltip theme="dark" nudgeX="5" :arrowOverflow="true">
             <template #trigger>
@@ -151,7 +151,7 @@
             </template>
             <template #default>
               <div
-                class="z-10 px-3 h-auto pt-3 pb-3 bg-white rounded-lg shadow w-40 dark:bg-gray-700"
+                class="z-10 w-40 h-auto px-3 pt-3 pb-3 bg-white rounded-lg shadow dark:bg-gray-700"
               >
                 <div class="block">
                   <div class="mb-2">
@@ -189,7 +189,7 @@
         </div>
       </div>
 
-      <div class="flex items-center p-4 hover:bg-gray-200 cursor-pointer">
+      <div class="flex items-center p-4 cursor-pointer hover:bg-gray-200">
         <div class="ml-2 mr-4">
           <sw-tooltip theme="dark" nudgeX="5" :arrowOverflow="true">
             <template #trigger>

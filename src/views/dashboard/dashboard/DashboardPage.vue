@@ -1,5 +1,5 @@
 <template>
-  <main class="bg-gray-50 dark:bg-gray-900 p-4 lg:ml-[105px] h-full space-y-4">
+  <main class="bg-gray-50 dark:bg-gray-900 p-4 lg:ml-[250px] h-full space-y-4">
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 h-1/6">
       <div
         class="border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-xl h-32 lg:h-64"
